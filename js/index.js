@@ -1,3 +1,107 @@
+const translations = {
+  en: {
+    Special_Design: "Special Design",
+    About: "About",
+    Skills: "Skills",
+    gallery: "Gallery",
+    timeline: "Timeline",
+    features: "Features",
+    testimonials: "Testimonials",
+    header: "We Are Creative Agency",
+    desc1:
+      "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Deleniti ipsa cumque, alias aut itaque, at, temporibus",
+    about: "About Us",
+    desc2:
+      " Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium, vel tempora blanditiis optio dolores architectosimilique dignissimos ratione saepe odio?",
+    Our_Skills: "Our Skills",
+    Our_Gallery: "Our Gallery",
+    desc3:
+      " Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dictamolestias perferendis libero similique nemo sed ipsam? Asperiores reiciendis natus odio porro quo eligendi a odit, velit magnam harum, officiis fugit.",
+    Our_Features: "Our Features",
+    desc4:
+      "  We are professional marketeers, we will do anything you imagine in no time.",
+    Development: "Development",
+    Marketing: "Marketing",
+    Hosting: "Hosting",
+    Database: "Database",
+    Cloud_and_Servers: "Cloud and Servers",
+    Seo: "Seo",
+    Testimonials: "Testimonials",
+    desc5:
+      " Iam very happy with the product its amazing and i recieve it very fast and the price was amazing.",
+    desc6: "CEO At Company",
+    name1: "Ahmed Mosaad",
+    name2: "Mohamed Ibrahim",
+    name3: "Sherief Ashraf",
+    Contact_Us: "Contact Us",
+    footer: "Create With Love By Mahmoud Dawoud",
+    lang: "lang",
+  },
+  ar: {
+    Special_Design: "تصميم خاص",
+    About: "عنا",
+    Skills: "مهارات",
+    gallery: "صالة عرض",
+    timeline: "الجدول الزمني",
+    features: "سمات",
+    testimonials: "التوصيات",
+    header: "نحن وكالة إبداعية",
+    desc1:
+      "العميل نفسه ، سيتمكن العميل من متابعة اكتساب الشركة. ليتم محوها ، مع ذلك ، في أوقات أخرى ، أو نحو ذلك ، في بعض الأحيان",
+    about: "معلومات عنا",
+    desc2:
+      "العميل نفسه ، سيتمكن العميل من متابعة اكتساب الشركة. ليتم محوها ، مع ذلك ، في أوقات أخرى ، أو نحو ذلك ، في بعض الأحيان",
+    Our_Skills: "مهاراتنا",
+    Our_Gallery: "معرضنا",
+    desc3:
+      "العميل نفسه ، سيتمكن العميل من متابعة اكتساب الشركة. ليتم محوها ، مع ذلك ، في أوقات أخرى ، أو نحو ذلك ، في بعض الأحيان",
+    Our_Features: "ميزاتنا",
+    desc4: "نحن مسوقي محترفون ، وسنفعل أي شيء تتخيله في أي وقت من الأوقات.",
+    Development: "تطوير",
+    Marketing: "تسويق",
+    Hosting: "الاستضافة",
+    Database: "قاعدة البيانات",
+    Cloud_and_Servers: "السحابة والخوادم",
+    Seo: "كبار المسئولين الاقتصاديين",
+    Testimonials: "الشهادات - التوصيات",
+    desc5:
+      "العميل نفسه ، سيتمكن العميل من متابعة اكتساب الشركة. ليتم محوها ، مع ذلك ، في أوقات أخرى ، أو نحو ذلك ، في بعض الأحيان",
+    desc6: "الرئيس التنفيذي في الشركة",
+    name1: "احمد مسعد",
+    name2: "محمد ابراهيم",
+    name3: "شريف اشرف",
+    Contact_Us: "اتصل بنا",
+    footer: "انشىء بواسطة المبرمج محمود داود",
+    lang: "اللغة",
+  },
+};
+
+const languageSelector = document.querySelector("#lang");
+// const langButton = document.querySelector("#lang");
+
+languageSelector.addEventListener("click", (event) => {
+  const currentLanguage = languageSelector.textContent.trim();
+  const newLanguage = currentLanguage === translations.en.lang ? "ar" : "en";
+  setLanguage(newLanguage);
+  languageSelector.textContent = translations[newLanguage].lang;
+  localStorage.setItem("lang", newLanguage);
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  const language = localStorage.getItem("lang") || "en";
+  languageSelector.textContent = translations[language].lang;
+  setLanguage(language);
+});
+
+const setLanguage = (language) => {
+  const elements = document.querySelectorAll("[data-i18n]");
+  elements.forEach((element) => {
+    const translationKey = element.getAttribute("data-i18n");
+    element.textContent = translations[language][translationKey];
+  });
+  document.dir = language === "ar" ? "rtl" : "ltr";
+};
+
 // Check If There's Local Storage Color Option
 let mainColors = localStorage.getItem("color_option");
 
